@@ -65,7 +65,7 @@ m= m.iloc[:,1]
 scales = np.arange(1, 300)  # 可以調整尺度範圍
 wavelet = 'morl'  # 使用 Morlet 小波（適合連續性信號）
 coef, freqs = pywt.cwt(m.values, scales, wavelet)
-    
+
 
 #%%將計算完的特徵加入資料庫%%
 # # 建立連接
@@ -89,5 +89,12 @@ coef, freqs = pywt.cwt(m.values, scales, wavelet)
 # ]
 # collection.insert_many(data_list)
 
-#%%特徵篩選
+#%%資料預處裡
+from sklearn.model_selection import train_test_split
 
+df = lambda i:for i in df_list:
+                pd.concat(df_list[i],df[i+1])
+#%%特徵篩選
+from mrmr import mrmr_classif
+
+selected_features = mrmr_classif(X=X, y=y, K=10)
